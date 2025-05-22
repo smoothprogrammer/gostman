@@ -5,23 +5,32 @@ on:
   push:
     branches: [main]
 env:
-  CI_NIX_STORE: ~/nix
   CI_NIX_FLAKE: .#default
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Cache Nix
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Lint
+        run: |
+          nix develop ${{ env.CI_NIX_FLAKE }} --command \
+            editorconfig-checker && echo "ok"
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Nix
-        uses: cachix/install-nix-action@v20
+        uses: DeterminateSystems/nix-installer-action@main
       - name: Cache Nix
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.CI_NIX_STORE }}
-          key: ${{ runner.os }}-nix-${{ hashFiles('flake.nix', 'flake.lock') }}
+        uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Cache Go
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: ${{ runner.os }}-go-${{ hashfiles('go.mod', 'go.sum') }}
           path: |
@@ -29,23 +38,5 @@ jobs:
             ~/go/pkg/mod
       - name: Test
         run: |
-          nix --store ${{ env.CI_NIX_STORE }} \
-            develop ${{ env.CI_NIX_FLAKE }} --command \
+          nix develop ${{ env.CI_NIX_FLAKE }} --command \
             go test -v -short -cover -race ./...
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Nix
-        uses: cachix/install-nix-action@v20
-      - name: Cache Nix
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.CI_NIX_STORE }}
-          key: ${{ runner.os }}-nix-${{ hashFiles('flake.nix', 'flake.lock') }}
-      - name: Lint
-        run: |
-          nix --store ${{ env.CI_NIX_STORE }} \
-            develop ${{ env.CI_NIX_FLAKE }} --command \
-            editorconfig-checker && echo "ok"

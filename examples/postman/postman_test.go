@@ -13,8 +13,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/minizilla/gostman"
-	"github.com/minizilla/testr"
+	"github.com/smoothprogrammer/gostman"
+	"github.com/smoothprogrammer/testr"
 )
 
 type postmanResponse struct {

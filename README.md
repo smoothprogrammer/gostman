@@ -1,4 +1,4 @@
-# gostman [![Go Reference](https://pkg.go.dev/badge/github.com/minizilla/gostman.svg)](https://pkg.go.dev/github.com/minizilla/gostman) [![main](https://github.com/minizilla/gostman/actions/workflows/main.yaml/badge.svg)](https://github.com/minizilla/gostman/actions/workflows/main.yaml)
+# gostman [![Go Reference](https://pkg.go.dev/badge/github.com/smoothprogrammer/gostman.svg)](https://pkg.go.dev/github.com/smoothprogrammer/gostman) [![main](https://github.com/smoothprogrammer/gostman/actions/workflows/main.yaml/badge.svg)](https://github.com/smoothprogrammer/gostman/actions/workflows/main.yaml)
 
 [Postman](https://www.postman.com/) nuances in [Go](https://golang.org/) Test.
 
@@ -7,7 +7,7 @@
 Just import gostman to your test package.
 
 ```go
-import github.com/minizilla/gostman
+import github.com/smoothprogrammer/gostman
 ```
 
 ## Usage
@@ -100,8 +100,8 @@ import (
     "os"
     "testing"
 
-    "github.com/minizilla/gostman"
-    "github.com/minizilla/testr"
+    "github.com/smoothprogrammer/gostman"
+    "github.com/smoothprogrammer/testr"
 )
 
 func TestMain(m *testing.M) {

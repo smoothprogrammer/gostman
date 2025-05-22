@@ -1,10 +1,10 @@
-module github.com/minizilla/gostman
+module github.com/smoothprogrammer/gostman
 
 go 1.17
 
 require (
-	github.com/minizilla/testr v0.2.3
 	github.com/sirupsen/logrus v1.8.1
+	github.com/smoothprogrammer/testr v1.0.0
 	gopkg.in/yaml.v2 v2.4.0
 )
 
