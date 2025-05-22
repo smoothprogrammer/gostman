@@ -10,4 +10,8 @@ require (
 
 require golang.org/x/sys v0.0.0-20191026070338-33540a1f6037 // indirect
 
-retract v0.1.0
+// Old github handle.
+retract (
+	v0.1.0
+	v0.1.1
+)
