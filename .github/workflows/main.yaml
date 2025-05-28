@@ -15,7 +15,7 @@ jobs:
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
       - name: Cache Nix
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/flakehub-cache-action@main
       - name: Lint
         run: |
           nix develop ${{ env.CI_NIX_FLAKE }} --command \
@@ -28,7 +28,7 @@ jobs:
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
       - name: Cache Nix
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/flakehub-cache-action@main
       - name: Cache Go
         uses: actions/cache@v4
         with:
